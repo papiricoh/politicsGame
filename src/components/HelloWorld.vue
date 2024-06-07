@@ -1,34 +1,33 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 
-defineProps<{ msg: string }>()
+</script>
+<script lang="ts">
+import { defineComponent } from 'vue';
+import Good from '../logic/models/economy/Good';
 
-const count = ref(0)
+export default defineComponent({
+  name: 'GoodComponent',
+  data() {
+    return {
+      good: new Good('Apple', 1.0, 1000, 1000),
+    };
+  },
+  computed: {
+    currentPrice(): number {
+      return this.good.getPrice();
+    },
+  },
+});
 </script>
 
 <template>
-  <h1>{{ msg }}</h1>
+  <div>
+    <div>{{ good.name }}</div>
+    <button @click="good.demand += 1000">Demmand +</button>
+    <button @click="good.supply += 1000">Suppy +</button>
+    <div>{{ good.getPrice() }}</div>
 
-  <div class="card">
-    <button type="button" @click="count++">count is {{ count }}</button>
-    <p>
-      Edit
-      <code>components/HelloWorld.vue</code> to test HMR
-    </p>
   </div>
-
-  <p>
-    Check out
-    <a href="https://vuejs.org/guide/quick-start.html#local" target="_blank"
-      >create-vue</a
-    >, the official Vue + Vite starter
-  </p>
-  <p>
-    Install
-    <a href="https://github.com/johnsoncodehk/volar" target="_blank">Volar</a>
-    in your IDE for a better DX
-  </p>
-  <p class="read-the-docs">Click on the Vite and Vue logos to learn more</p>
 </template>
 
 <style scoped>
