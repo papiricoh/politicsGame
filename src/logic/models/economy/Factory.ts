@@ -1,24 +1,25 @@
-import Good from "./Good";
 import NeededGood from "../../controllers/NeededGood";
+import Output from "./Output";
+import Good from "./Good";
 
 export default class Factory {
     name: string;
     neededInput: NeededGood[];
     input: number[];
-    output: Good[];
+    output: Map<Good, number>;
     size: number;
-    workers: number;
+    workers: number; //1000 workers per level
   
-    constructor(name: string, neededGoods: NeededGood[], input: number[], output: Good[], size: number, workers: number) {
+    constructor(name: string, neededGoods: NeededGood[], input: number[], output: Map<Good, number>, size: number, workers: number) {
         this.name = name;
         this.neededInput = neededGoods;
         this.input = input;
         this.output = output;
-        this.size = size;
+        this.size = size > 0 ? size : 1;
         this.workers = workers;
     }
 
-    checkProduction() {
+    getProductionFactor(): number {
         let neededImput = 0;
         for (let index = 0; index < this.neededInput.length; index++) {
             neededImput += this.neededInput[index].quantity;
@@ -27,14 +28,30 @@ export default class Factory {
         for (let index = 0; index < this.neededInput.length; index++) {
             avariableInput += this.input[index];
         }
-        let outputFactor = neededImput - avariableInput;
+        let outputFactor =  avariableInput / neededImput;
 
+        return outputFactor;
+    }
+
+    getWorkerFactor(): number {
+        let maxWorkers = 1000 * this.size;
+        let workerFactor = this.workers / maxWorkers;
+
+        return (workerFactor * this.size);
     }
 
 
-    getOutput(): Number {
-
-        return 0;
+    getOutput(): Output {
+        let map: Map<Good, number> = new Map<Good, number>();
+        let prodValue: number = 0;
+        for (const stack of this.output.entries()) {
+            let quantity: number = Number((stack[1] * this.getProductionFactor() * this.getWorkerFactor()).toFixed());
+            map.set(stack[0], quantity);
+            prodValue += stack[0].getPrice() * quantity
+        }
+        console.log("GetOutuput");
+        
+        return new Output(prodValue, map);
     }
   
 }

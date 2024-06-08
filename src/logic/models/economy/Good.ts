@@ -47,7 +47,6 @@ export default class Good {
         // Aplicar el ajuste de precio multiplicado por el factor de ajuste
         const adjustedPrice = this.base_price * (1 + priceAdjustment * adjustmentFactor);
     
-        console.log("loaded price");
         
         return MathUtils.roundToDecimals(adjustedPrice, 2);
       }
