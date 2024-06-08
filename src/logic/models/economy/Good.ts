@@ -1,13 +1,14 @@
 import MathUtils from "../../utils/MathUtil";
+import { GoodTypes } from "./Enums/GoodTypes";
 
 export default class Good {
-    name: string;
+    name: GoodTypes;
     base_price: number;
     supply: number;
     demand: number;
 
   
-    constructor(name: string, base_price: number, initialSupply: number, initialDemand: number, ) {
+    constructor(name: GoodTypes, base_price: number, initialSupply: number, initialDemand: number, ) {
         this.name = name;
         this.base_price = base_price;
         this.demand = initialDemand;

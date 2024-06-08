@@ -1,4 +1,4 @@
-import NeededGood from "../../controllers/NeededGood";
+import NeededGood from "./NeededGood";
 import Output from "./Output";
 import Good from "./Good";
 

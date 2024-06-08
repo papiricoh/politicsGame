@@ -1,4 +1,4 @@
-import Good from "../models/economy/Good";
+import Good from "./Good";
 
 export default class NeededGood {
     quantity: number;

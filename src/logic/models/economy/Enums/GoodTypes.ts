@@ -1,4 +1,6 @@
 export enum GoodTypes {
+    None = "None",
+
     Iron = 'Iron',
     Copper = 'Copper',
     Crude = 'Crude',
