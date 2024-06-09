@@ -55,6 +55,8 @@ async function createWindow() {
       // Read more on https://www.electronjs.org/docs/latest/tutorial/context-isolation
       // contextIsolation: false,
     },
+    width: 1600,
+    height: 1000
   })
 
   if (VITE_DEV_SERVER_URL) { // #298

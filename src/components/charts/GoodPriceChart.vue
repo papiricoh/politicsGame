@@ -21,7 +21,7 @@ export default defineComponent({
                     text: 'Sample Line Chart'
                 },
                 xAxis: {
-                    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May']
+                    categories: []
                 },
                 yAxis: {
                     title: {

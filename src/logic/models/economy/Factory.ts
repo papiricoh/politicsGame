@@ -53,7 +53,6 @@ export default class Factory {
             map.set(stack[0], quantity);
             prodValue += stack[0].getPrice() * quantity
         }
-        console.log("GetOutuput");
         
         return new Output(prodValue, map);
     }
