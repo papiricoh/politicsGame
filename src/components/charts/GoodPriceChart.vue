@@ -15,7 +15,7 @@ export default defineComponent({
         return {
             chartOptions: {
                 chart: {
-                    type: 'line'
+                    type: 'spline'
                 },
                 title: {
                     text: 'Sample Line Chart'
@@ -40,6 +40,7 @@ export default defineComponent({
     },
     props: {
         newData: Number,
+        
     },
     watch: {
         newData: {
