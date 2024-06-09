@@ -5,13 +5,17 @@ import Government from "./controllers/Government";
 import { GoodTypes } from "./models/economy/Enums/GoodTypes";
 import Factory from "./models/economy/Factory";
 import Good from "./models/economy/Good";
+import TickManager from "./utils/TickManager";
+import Tickeable from "./Interfaces/Tickeable";
 
-export default class Game {
+export default class Game implements Tickeable{
 
     private static instance: Game;
     private playerCountry: Country;
+    private tickManager: TickManager;
+    private countries: Country[];
 
-    constructor() {
+    constructor() { //GameInit
         Game.instance = this;
 
         let goods: Map<GoodTypes, Good> = new Map<GoodTypes, Good>();
@@ -20,15 +24,28 @@ export default class Game {
             goods.set(good.name, good);
         }
 
-        let factories = [new Factory("test", [new NeededGood(1, Game.defaultGoods.get(GoodTypes.Wheat) ?? new Good(GoodTypes.None, 1, 1, 1))], [1], new Map<Good, number>([[Game.defaultGoods.get(GoodTypes.Iron) ?? new Good(GoodTypes.None, 1, 1, 1), 2]]), 2, 1500)]
+        let factories = [new Factory("test", [new NeededGood(1, Game.defaultGoods.get(GoodTypes.Wheat) ?? new Good(GoodTypes.None, 1, 1, 1))], [1], new Map<Good, number>([[Game.defaultGoods.get(GoodTypes.Iron) ?? new Good(GoodTypes.None, 1, 1, 1), 2]]), 251, 1500)]
         
         
 
         let economy = new Economy("intervencionism", factories, goods);
 
         this.playerCountry = new Country("player", new Government("Democracy"), 1000020, economy);
+        
+        this.countries = [];
+        this.countries.push(this.playerCountry);
 
-        this.gameInit();
+
+        this.tickManager = new TickManager();
+        this.tick();
+        this.tickManager.startTick(1000, this.tick)
+    }
+
+    tick(): void {
+        console.log("Tick");
+        for (const country of Game.getInstance().countries) {
+            country.tick();
+        }
     }
 
     public static getInstance(): Game {
@@ -38,13 +55,18 @@ export default class Game {
         return Game.instance;
     }
 
-
-    gameInit(): void {
-        
+    public getTickManager(): TickManager {
+        return this.tickManager;
     }
+
+
 
     getPlayerCountry(): Country {
         return this.playerCountry;
+    }
+
+    stopGame(): void {
+        this.tickManager.stopTick();
     }
 
 

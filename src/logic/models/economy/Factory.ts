@@ -40,6 +40,10 @@ export default class Factory {
         return (workerFactor * this.size);
     }
 
+    getMaxWorkers(): number {
+        return 1000 * this.size;
+    }
+
 
     getOutput(): Output {
         let map: Map<Good, number> = new Map<Good, number>();
