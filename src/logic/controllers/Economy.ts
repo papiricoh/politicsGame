@@ -2,6 +2,7 @@ import Tickeable from "../Interfaces/Tickeable";
 import { GoodTypes } from "../models/economy/Enums/GoodTypes";
 import Factory from "../models/economy/Factory";
 import Good from "../models/economy/Good";
+import Output from "../models/economy/Output";
 
 export default class Economy implements Tickeable {
     type: string;
@@ -25,6 +26,11 @@ export default class Economy implements Tickeable {
 
     populateEconomy(activePopulation: number): void {
         let vacants = 0;
+        let goodsMap: Map<GoodTypes, Good> = new Map(this.goods);
+        for (const good of goodsMap.values()) {
+            good.supply = 0; //reset goods
+        }
+        
         for (const factory of this.factories) {
             let maxWorkers = factory.getMaxWorkers();
             if(activePopulation === 0) {
@@ -37,7 +43,11 @@ export default class Economy implements Tickeable {
                 activePopulation = 0; //Check 0
                 vacants += factory.workers - maxWorkers;
             }
-
+            //Change goods supply
+            let output: Output = factory.getOutput()
+            for (const good of output.goods.entries()) {
+                goodsMap.get(good[0].name)!.supply += good[1];
+            }
         }
         this.unemployed = activePopulation;
         this.vacants = Math.abs(vacants);

@@ -1,17 +1,20 @@
 <script setup lang="ts">
-
+import GoodPriceChart from './charts/GoodPriceChart.vue'
 </script>
+
+
 <script lang="ts">
 import { defineComponent } from 'vue';
 import Game from '../logic/Game';
-import Economy from '../logic/controllers/Economy'
+import {GoodTypes} from '../logic/models/economy/Enums/GoodTypes'
 
 export default defineComponent({
   name: 'GoodComponent',
   data() {
     return {
       game: Game.getInstance(),
-      tickInterval: null as ReturnType<typeof setInterval> | null,
+      economy: Game.getInstance().getPlayerCountry().economy,
+      
     };
   },
   computed: {
@@ -41,6 +44,8 @@ export default defineComponent({
     <div>Unemployment Rate: {{ ((game.getPlayerCountry().economy.unemployed / game.getPlayerCountry().getActivePopulation()) * 100).toFixed(2) }}%</div>
     <button @click="game.getPlayerCountry().economy.factories[0].size += 100">More size</button>
 
+    <div>{{ game.getPlayerCountry().economy.goods.get(GoodTypes.Iron).getPrice() }}</div>
+    <GoodPriceChart :newData="game.getPlayerCountry().economy.goods.get(GoodTypes.Iron).getPrice()"/>
   </div>
 </template>
 

@@ -24,7 +24,7 @@ export default class Game implements Tickeable{
             goods.set(good.name, good);
         }
 
-        let factories = [new Factory("test", [new NeededGood(1, Game.defaultGoods.get(GoodTypes.Wheat) ?? new Good(GoodTypes.None, 1, 1, 1))], [1], new Map<Good, number>([[Game.defaultGoods.get(GoodTypes.Iron) ?? new Good(GoodTypes.None, 1, 1, 1), 2]]), 251, 1500)]
+        let factories = [new Factory("test", [new NeededGood(1, Game.defaultGoods.get(GoodTypes.Wheat) ?? new Good(GoodTypes.None, 1, 1, 1))], [1], new Map<Good, number>([[Game.defaultGoods.get(GoodTypes.Iron) ?? new Good(GoodTypes.None, 1, 1, 1), 2]]), 40, 1500)]
         
         
 
