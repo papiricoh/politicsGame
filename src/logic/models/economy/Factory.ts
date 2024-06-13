@@ -3,6 +3,8 @@ import Output from "./Output";
 import Good from "./Good";
 
 export default class Factory {
+    static defaultMaxWorkers: number = 1000;
+
     name: string;
     neededInput: NeededGood[];
     input: number[];
@@ -34,10 +36,10 @@ export default class Factory {
     }
 
     getWorkerFactor(): number {
-        let maxWorkers = 1000 * this.size;
+        let maxWorkers = Factory.defaultMaxWorkers * this.size;
         let workerFactor = this.workers / maxWorkers;
 
-        return (workerFactor * this.size);
+        return (this.size * workerFactor);
     }
 
     getMaxWorkers(): number {
@@ -49,7 +51,7 @@ export default class Factory {
         let map: Map<Good, number> = new Map<Good, number>();
         let prodValue: number = 0;
         for (const stack of this.output.entries()) {
-            let quantity: number = Number((stack[1] * this.getProductionFactor() * this.getWorkerFactor()).toFixed());
+            let quantity: number = Number((stack[1] * this.getProductionFactor() * this.getWorkerFactor()).toFixed()) * Number((this.workers / Factory.defaultMaxWorkers).toFixed());
             map.set(stack[0], quantity);
             prodValue += stack[0].getPrice() * quantity
         }

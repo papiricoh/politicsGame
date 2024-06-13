@@ -25,6 +25,7 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "@types/uuid": "^9.0.8",
     "@vitejs/plugin-vue": "^5.0.4",
     "electron": "^29.1.1",
     "electron-builder": "^24.13.3",
@@ -37,6 +38,7 @@
   },
   "dependencies": {
     "highcharts": "^11.4.3",
-    "highcharts-vue": "^2.0.1"
+    "highcharts-vue": "^2.0.1",
+    "uuid": "^10.0.0"
   }
 }

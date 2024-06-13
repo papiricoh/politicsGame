@@ -1,9 +1,9 @@
-<script setup lang="ts">
+<script setup>
 import GoodPriceChart from './charts/GoodPriceChart.vue'
 </script>
 
 
-<script lang="ts">
+<script>
 import { defineComponent } from 'vue';
 import Game from '../logic/Game';
 import {GoodTypes} from '../logic/models/economy/Enums/GoodTypes'
@@ -37,6 +37,7 @@ export default defineComponent({
 
 <template>
   <div>
+    <div>GDP: {{ game.getPlayerCountry().economy.gdp.toLocaleString() }}€</div>
     <div>Population: {{ game.getPlayerCountry().population }}</div>
     <div>Active: {{ game.getPlayerCountry().getActivePopulation() }}</div>
     <div>Unemployed: {{ game.getPlayerCountry().economy.unemployed }}</div>
@@ -44,8 +45,10 @@ export default defineComponent({
     <div>Unemployment Rate: {{ ((game.getPlayerCountry().economy.unemployed / game.getPlayerCountry().getActivePopulation()) * 100).toFixed(2) }}%</div>
     <button @click="game.getPlayerCountry().economy.factories[0].size += 100">More size</button>
 
-    <div>{{ game.getPlayerCountry().economy.goods.get(GoodTypes.Iron).getPrice() }}</div>
-    <GoodPriceChart :newData="game.getPlayerCountry().economy.goods.get(GoodTypes.Iron).getPrice()"/>
+
+    <div>Suppy: {{ game.getPlayerCountry().economy.goods.get(GoodTypes.Iron)?.supply }}</div>
+    <div>{{ game.getPlayerCountry().economy.goods.get(GoodTypes.Iron)?.getPrice() }}</div>
+    <GoodPriceChart :newData="game.getPlayerCountry().economy.goods.get(GoodTypes.Iron)?.getPrice()"/>
   </div>
 </template>
 

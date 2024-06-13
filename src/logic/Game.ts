@@ -7,6 +7,8 @@ import Factory from "./models/economy/Factory";
 import Good from "./models/economy/Good";
 import TickManager from "./utils/TickManager";
 import Tickeable from "./Interfaces/Tickeable";
+import PopulationUnit from "./models/population/PopulationUnit";
+import { IdeologicalGroup } from "./models/politics/Enums/IdeologicalGroup";
 
 export default class Game implements Tickeable{
 
@@ -26,11 +28,12 @@ export default class Game implements Tickeable{
 
         let factories = [new Factory("test", [new NeededGood(1, Game.defaultGoods.get(GoodTypes.Wheat) ?? new Good(GoodTypes.None, 1, 1, 1))], [1], new Map<Good, number>([[Game.defaultGoods.get(GoodTypes.Iron) ?? new Good(GoodTypes.None, 1, 1, 1), 2]]), 40, 1500)]
         
-        
+        let population: PopulationUnit[] = [];
+        population.push(new PopulationUnit(10, IdeologicalGroup.Capitalism, 100020, 0.4))
 
         let economy = new Economy("intervencionism", factories, goods);
 
-        this.playerCountry = new Country("player", new Government("Democracy"), 1000020, economy);
+        this.playerCountry = new Country("player", new Government("Democracy"), population, economy);
         
         this.countries = [];
         this.countries.push(this.playerCountry);
@@ -72,7 +75,7 @@ export default class Game implements Tickeable{
 
     //Default variables
     static defaultGoods: Map<GoodTypes, Good> = new Map([
-        [GoodTypes.Iron, new Good(GoodTypes.Iron, 25, 5000, 4000)],
+        [GoodTypes.Iron, new Good(GoodTypes.Iron, 25, 5000, 40000)],
         [GoodTypes.Copper, new Good(GoodTypes.Copper, 20, 4000, 3500)],
         [GoodTypes.Crude, new Good(GoodTypes.Crude, 60, 6000, 5500)],
         [GoodTypes.Wheat, new Good(GoodTypes.Wheat, 5, 8000, 7500)],

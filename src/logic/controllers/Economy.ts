@@ -11,6 +11,7 @@ export default class Economy implements Tickeable {
     goods: Map<GoodTypes, Good>;
     unemployed: number;
     vacants: number;
+    gdp: number;
 
     constructor(type: string, factories: Factory[], goods: Map<GoodTypes, Good>) {
         this.type = type;
@@ -18,6 +19,7 @@ export default class Economy implements Tickeable {
         this.goods = goods;
         this.unemployed = 0;
         this.vacants = 0;
+        this.gdp = 0;
     }
 
     tick(): void {
@@ -31,6 +33,7 @@ export default class Economy implements Tickeable {
             good.supply = 0; //reset goods
         }
         
+        let gdp = 0;
         for (const factory of this.factories) {
             let maxWorkers = factory.getMaxWorkers();
             if(activePopulation === 0) {
@@ -48,10 +51,11 @@ export default class Economy implements Tickeable {
             for (const good of output.goods.entries()) {
                 goodsMap.get(good[0].name)!.supply += good[1];
             }
+            gdp += output.value;
         }
         this.unemployed = activePopulation;
         this.vacants = Math.abs(vacants);
-
+        this.gdp = gdp;
     }
   
 }
