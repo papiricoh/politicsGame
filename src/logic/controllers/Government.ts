@@ -45,7 +45,7 @@ export default class Government {
             let divisionFactor: number = compatible_parties.length;
             let activeVoters: number = pop.active_population;
             for (const compParty of compatible_parties) {
-                let voters = Number(((activeVoters / divisionFactor) * (compParty.ideological_group == this.ideologicalTendency ? 1.8 : 1)).toFixed());
+                let voters = Number(((activeVoters / divisionFactor) * (compParty.ideological_group == this.ideologicalTendency ? 2.8 : 1)).toFixed());
                 if(compParty.isNew) {
                     voters = Number((voters / 2).toFixed());
                 }
@@ -66,9 +66,21 @@ export default class Government {
         }
 
 
+        //Order parties by ideological aligment
+        let defParliament: Map<Party, number> = new Map<Party, number>();
+        let totalIdeologies: number = Object.keys(IdeologicalGroup).length;
+        for (let index = 0; index < totalIdeologies; index++) {
+            let ideology = Object.values(IdeologicalGroup)[index];
+            for (const party of newParliament.entries()) {
+                if(party[0].ideological_group == ideology) {
+                    defParliament.set(party[0], party[1]);
+                    break;
+                }
+            }
 
+        }
 
-        this.parties = newParliament;
+        this.parties = defParliament;
 
     }
 

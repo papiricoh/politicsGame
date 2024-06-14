@@ -48,13 +48,14 @@ export default class Country implements Tickeable {
         let numIdeologies: number = Object.keys(IdeologicalGroup).length;
         let biggerParty: Party = this.government.getBiggerParty();
 
+        let variationFactor: number = MathUtils.getRandomInt(50);
         if(this.government.parties.get(biggerParty)! < this.government.pmMaxSeats / 3) {//TODO bypass shuffle
-            return;
+            variationFactor = MathUtils.getRandomInt(20);
         }
 
         let decadenceIdeology: IdeologicalGroup = biggerParty.ideological_group;
         let ideologicalPop: PopulationUnit = this.findPopbyIdeology(decadenceIdeology);
-        let randomMigrationFactor: number = MathUtils.roundToInt(ideologicalPop.total_population * (MathUtils.getRandomInt(80) / 100));
+        let randomMigrationFactor: number = MathUtils.roundToInt(ideologicalPop.total_population * (variationFactor / 100));
         ideologicalPop.total_population -= randomMigrationFactor;
         ideologicalPop.updateActivePops();
         if (ideologicalPop.total_population < 1) {
