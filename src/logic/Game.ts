@@ -9,6 +9,7 @@ import TickManager from "./utils/TickManager";
 import Tickeable from "./Interfaces/Tickeable";
 import PopulationUnit from "./models/population/PopulationUnit";
 import { IdeologicalGroup } from "./models/politics/Enums/IdeologicalGroup";
+import Party from "./models/politics/Party";
 
 export default class Game implements Tickeable{
 
@@ -30,10 +31,18 @@ export default class Game implements Tickeable{
         
         let population: PopulationUnit[] = [];
         population.push(new PopulationUnit(10, IdeologicalGroup.Capitalism, 100020, 0.4))
+        population.push(new PopulationUnit(10, IdeologicalGroup.Monarchism, 42020, 0.34))
+        population.push(new PopulationUnit(10, IdeologicalGroup.Environmentalism, 41020, 0.14))
+        population.push(new PopulationUnit(20, IdeologicalGroup.Fascism, 4520, 0.54))
 
         let economy = new Economy("intervencionism", factories, goods);
 
-        this.playerCountry = new Country("player", new Government("Democracy"), population, economy);
+        let parties = new Map<Party, number>;
+        parties.set(new Party("Partido capitalista", IdeologicalGroup.Capitalism, "#290ff0", false), 104)
+        parties.set(new Party("Partido monarquista", IdeologicalGroup.Monarchism, "#ff2320", false), 102)
+        parties.set(new Party("Partido fascista", IdeologicalGroup.Fascism, "#000000", false), 20)
+
+        this.playerCountry = new Country("player", new Government("Democracy", parties), population, economy);
         
         this.countries = [];
         this.countries.push(this.playerCountry);
