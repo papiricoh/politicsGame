@@ -21,7 +21,6 @@ export default defineComponent({
   methods: {
     updateData() {
       this.parliamentData = this.game.getPlayerCountry().government.getParliamentFormated();
-      this.$forceUpdate();
     },
     startElections() {
       this.game.getPlayerCountry().startElections();

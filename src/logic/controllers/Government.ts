@@ -10,10 +10,13 @@ export default class Government {
     //parliament
     pmMaxSeats: number = 200;
     ideologicalTendency: IdeologicalGroup = IdeologicalGroup.Conservatism;
+    votersFactor: number = 0;
+    lastElection: Date | undefined;
   
-    constructor(type: string, parties: Map<Party, number>) {
+    constructor(type: string, parties: Map<Party, number>, votersFactor: number) {
         this.type = type;
         this.parties = parties;
+        this.votersFactor = votersFactor;
     }
 
     setIdeologicalTendency(ig: IdeologicalGroup): void {
@@ -43,7 +46,7 @@ export default class Government {
 
 
             let divisionFactor: number = compatible_parties.length;
-            let activeVoters: number = pop.active_population;
+            let activeVoters: number = pop.total_population * this.votersFactor;
             for (const compParty of compatible_parties) {
                 let voters = Number(((activeVoters / divisionFactor) * (compParty.ideological_group == this.ideologicalTendency ? 2.8 : 1)).toFixed());
                 if(compParty.isNew) {
