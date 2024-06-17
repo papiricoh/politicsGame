@@ -26,7 +26,6 @@ export default class Government {
     }
 
     startElection(population: PopulationUnit[]): void {
-        let newParliament: Map<Party, number> = new Map<Party, number>();
         let totalVotesParties: Map<Party, number> = new Map<Party, number>();
         let totalVotes: number = 0;
 
@@ -61,22 +60,13 @@ export default class Government {
         }
 
 
-        //TODO: CRONJOB await x days to end the election campaing
-        let seatValue = totalVotes / this.pmMaxSeats;
-        for (const party of totalVotesParties.entries()) {
-            let partyVotes = Number((party[1] / seatValue).toFixed());
-            if (partyVotes > 0) {
-                newParliament.set(party[0], partyVotes);
-            }
-        }
-
 
         //Order parties by ideological aligment
         let defParliament: Map<Party, number> = new Map<Party, number>();
         let totalIdeologies: number = Object.keys(IdeologicalGroup).length;
         for (let index = 0; index < totalIdeologies; index++) {
             let ideology = Object.values(IdeologicalGroup)[index];
-            for (const party of newParliament.entries()) {
+            for (const party of totalVotesParties.entries()) {
                 if(party[0].ideological_group == ideology) {
                     defParliament.set(party[0], party[1]);
                     break;
@@ -84,9 +74,35 @@ export default class Government {
             }
 
         }
+        
+        //delete duplicate parties
+        let ideList: IdeologicalGroup[] = []
+        for (const party of defParliament.keys()) {
+            if(ideList.indexOf(party.ideological_group) > -1) {
+                defParliament.delete(party);//Duplicate
+            }else {
+                ideList.push(party.ideological_group);
+            }
 
+        }
+        console.log(defParliament);
+        
         this.electionManager = new ElectionEventManager(defParliament, () => {
-            this.parties = defParliament;
+            let newParliament: Map<Party, number> = new Map<Party, number>();
+            let newTotalVotes: number = 0;
+
+            for (const partyVotes of defParliament.values()) {
+                newTotalVotes += partyVotes;
+            }
+
+            let seatValue = newTotalVotes / this.pmMaxSeats;
+            for (const party of defParliament.entries()) {
+                let partyVotes = Number((party[1] / seatValue).toFixed());
+                if (partyVotes > 0) {
+                    newParliament.set(party[0], partyVotes);
+                }
+            }
+            this.parties = newParliament;
             this.lastElectionDate = new Date();
             this.electionManager = undefined;
         })

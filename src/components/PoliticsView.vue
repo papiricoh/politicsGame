@@ -1,5 +1,6 @@
 <script setup>
 import ParliamentChart from './charts/ParliamentChart.vue'
+import ElectionsChart from './charts/ElectionsChart.vue'
 </script>
 
 
@@ -76,7 +77,7 @@ export default defineComponent({
       <div>{{pop.ideology}}</div>
       <div>{{pop.total_population}}</div>
     </div>
-    <ParliamentChart :newData="electionData"/>
+    <ElectionsChart :newData="electionData"/>
     <div>{{ debugElectionTick }}</div>
     <div v-if="currentElectionEvent">
       <div>{{ currentElectionEvent.title }}</div>

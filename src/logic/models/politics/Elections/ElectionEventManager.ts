@@ -1,6 +1,7 @@
 import Game from "../../../Game";
 import Tickeable from "../../../Interfaces/Tickeable";
 import TickManager from "../../../utils/TickManager";
+import { IdeologicalGroup } from "../Enums/IdeologicalGroup";
 import Party from "../Party";
 import ElectionEvent from "./ElectionEvent";
 
@@ -48,11 +49,22 @@ export default class ElectionEventManager implements Tickeable {
         let victim: Party = this.selectNoDuplicateRandomParty(perpetrator);
 
         return new ElectionEvent(perpetrator.name + " attacks the " + victim.name + " economic polity", "Long desc", perpetrator, victim, this.currentPredictions, 0.4, (p: Party, pv: number, v: Party, vv: number): void => {
-            
-            this.currentPredictions.set(p, pv);
-            this.currentPredictions.set(v, vv);
+            let perpetratorParty = this.findPartiesByIdeology(p);
+            let victimParty = this.findPartiesByIdeology(v);
+
+            this.currentPredictions.set(perpetratorParty, pv);
+            this.currentPredictions.set(victimParty, vv);
             this.currentEvent = undefined;
         });
+    }
+
+    findPartiesByIdeology(p: Party): Party {
+        for (const party of this.currentPredictions.keys()) {
+            if(party.ideological_group == p.ideological_group) {
+                return party;
+            }
+        }
+        return new Party("Pirate Party", IdeologicalGroup.Libertarianism, "#982482", true);
     }
 
     selectNoDuplicateRandomParty(first: Party): Party {
@@ -79,7 +91,7 @@ export default class ElectionEventManager implements Tickeable {
     getElectionsFormated(): any {
         let formatted = [];
         for (const party of this.currentPredictions.entries()) {
-            formatted.push([party[0].name, party[1], party[0].color, party[0].getAbreviation()])
+            formatted.push([party[0].name, party[1], party[0].color])
         }
         return formatted;
     }
