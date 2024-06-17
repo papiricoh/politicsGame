@@ -1,4 +1,5 @@
 <script setup>
+import IncrementalNumber from './visual/IncrementalNumber.vue'
 import ParliamentChart from './charts/ParliamentChart.vue'
 import ElectionsChart from './charts/ElectionsChart.vue'
 </script>
@@ -73,6 +74,7 @@ export default defineComponent({
   <div class="politics_container">
     <ParliamentChart :newData="parliamentData"/>
     <button @click="startElections">ELections</button>
+    <IncrementalNumber :num="100000"/>
     <div v-for="pop in game.getPlayerCountry().population">
       <div>{{pop.ideology}}</div>
       <div>{{pop.total_population}}</div>
