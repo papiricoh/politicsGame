@@ -1,6 +1,7 @@
 import ElectionEventManager from "../models/politics/Elections/ElectionEventManager";
 import { IdeologicalGroup } from "../models/politics/Enums/IdeologicalGroup";
 import Party from "../models/politics/Party";
+import LawManager from "../models/politics/laws/LawManager";
 import PopulationUnit from "../models/population/PopulationUnit";
 import MathUtils from "../utils/MathUtil";
 
@@ -8,17 +9,20 @@ export default class Government {
     type: string;
 
     parties: Map<Party, number>;
-    //parliament
+    //Parliament
     pmMaxSeats: number = 200;
     ideologicalTendency: IdeologicalGroup = IdeologicalGroup.Conservatism;
     votersFactor: number = 0;
     lastElectionDate: Date | undefined;
     electionManager: ElectionEventManager | undefined;
-  
-    constructor(type: string, parties: Map<Party, number>, votersFactor: number) {
+    //Laws
+    lawsManager: LawManager;
+
+    constructor(type: string, parties: Map<Party, number>, votersFactor: number, lawsManager: LawManager) {
         this.type = type;
         this.parties = parties;
         this.votersFactor = votersFactor;
+        this.lawsManager = lawsManager;
     }
 
     setIdeologicalTendency(ig: IdeologicalGroup): void {

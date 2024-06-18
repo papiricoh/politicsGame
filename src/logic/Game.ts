@@ -10,6 +10,7 @@ import Tickeable from "./Interfaces/Tickeable";
 import PopulationUnit from "./models/population/PopulationUnit";
 import { IdeologicalGroup } from "./models/politics/Enums/IdeologicalGroup";
 import Party from "./models/politics/Party";
+import LawManager from "./models/politics/laws/LawManager";
 
 export default class Game implements Tickeable{
 
@@ -42,7 +43,7 @@ export default class Game implements Tickeable{
         parties.set(new Party("Partido monarquista", IdeologicalGroup.Monarchism, "#ff2320", false), 102)
         parties.set(new Party("Partido fascista", IdeologicalGroup.Fascism, "#000000", false), 20)
 
-        this.playerCountry = new Country("player", new Government("Democracy", parties, 0.5 /* FACTOR DE DEMOCRATIZACION */), population, economy);
+        this.playerCountry = new Country("player", new Government("Democracy", parties, 0.5 /* FACTOR DE DEMOCRATIZACION */, new LawManager()), population, economy);
         
         this.countries = [];
         this.countries.push(this.playerCountry);
