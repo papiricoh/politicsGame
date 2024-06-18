@@ -43,7 +43,7 @@ export default class Game implements Tickeable{
         parties.set(new Party("Partido monarquista", IdeologicalGroup.Monarchism, "#ff2320", false), 102)
         parties.set(new Party("Partido fascista", IdeologicalGroup.Fascism, "#000000", false), 20)
 
-        this.playerCountry = new Country("player", new Government("Democracy", parties, 0.5 /* FACTOR DE DEMOCRATIZACION */, new LawManager()), population, economy);
+        this.playerCountry = new Country("player", new Government("Democracy", parties, 0.5 /* FACTOR DE DEMOCRATIZACION */, new LawManager(undefined)), population, economy);
         
         this.countries = [];
         this.countries.push(this.playerCountry);
