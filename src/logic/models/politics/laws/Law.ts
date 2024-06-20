@@ -1,6 +1,7 @@
 import { LawCategory } from "./LawCategory";
+import { EconomicLawType } from "./types/economic/EconomicLawType";
 
-export default class Law {
+export default abstract class Law {
     title: string;
     category: LawCategory;
 
@@ -9,5 +10,5 @@ export default class Law {
         this.category = category;
     }
 
-
+    abstract getModifiers(): string;
 }
