@@ -26,11 +26,11 @@ export default defineComponent({
     }
   },
   async mounted() {
-    this.game.getTickManager().addTickCallback(this.updateData);
+    //this.game.getTickManager().addTickCallback(this.updateData);
   },
 
   async beforeUnmount() { 
-    this.game.getTickManager().removeTickCallback(this.updateData);
+    //this.game.getTickManager().removeTickCallback(this.updateData);
   }
 });
 </script>

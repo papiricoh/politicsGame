@@ -32,13 +32,13 @@ export default defineComponent({
     },
     startElections() {
       this.game.getPlayerCountry().startElections();
-      this.game.getTickManager().addTickCallback(this.electionTick);
+      //this.game.getTickManager().addTickCallback(this.electionTick);
       this.isElectionTime = true;
     },
     electionTick() {
       //Finnish Election
       if(this.game.getPlayerCountry().government.electionManager == undefined) {
-        this.game.getTickManager().removeTickCallback(this.electionTick);
+        //this.game.getTickManager().removeTickCallback(this.electionTick);
         this.updateData();
         this.isElectionTime = false;
         this.electionData = [];
