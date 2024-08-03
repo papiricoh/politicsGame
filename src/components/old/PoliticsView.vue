@@ -7,7 +7,7 @@ import ElectionsChart from './charts/ElectionsChart.vue'
 
 <script>
 import { defineComponent } from 'vue';
-import Game from '../logic/Game';
+import Game from '../../logic/Game';
 import ElectionEventManager from '../logic/models/politics/Elections/ElectionEventManager';
 
 export default defineComponent({

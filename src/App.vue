@@ -1,6 +1,5 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import PoliticsView from './components/PoliticsView.vue'
+
 </script>
 
 <script>

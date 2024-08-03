@@ -5,7 +5,7 @@ import GoodPriceChart from './charts/GoodPriceChart.vue'
 
 <script>
 import { defineComponent } from 'vue';
-import Game from '../logic/Game';
+import Game from '../../logic/Game';
 import {GoodTypes} from '../logic/models/economy/Enums/GoodTypes'
 
 export default defineComponent({
