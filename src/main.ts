@@ -8,7 +8,28 @@ import './demos/ipc'
 // If you want use Node.js, the`nodeIntegration` needs to be enabled in the Main process.
 //import './demos/node'
 
+
+/* import the fontawesome core */
+import { library } from '@fortawesome/fontawesome-svg-core'
+
+/* import font awesome icon component */
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+/* import specific icons */
+import { faBuildingColumns, faHouse, faChartPie, faMoneyBills, faPersonMilitaryRifle, faUsersViewfinder } from '@fortawesome/free-solid-svg-icons/index'
+
+/* add icons to the library */
+library.add(faBuildingColumns)
+library.add(faHouse)
+library.add(faChartPie)
+library.add(faUsersViewfinder)
+library.add(faMoneyBills)
+library.add(faPersonMilitaryRifle)
+
+
 const app = createApp(App);
+
+app.component('font-awesome-icon', FontAwesomeIcon)
 app.use(HighchartsVue);
 
 app.mount('#app').$nextTick(() => {
