@@ -31,7 +31,7 @@ export default defineComponent({
       <div v-if="nav_page == 'production'" class="selected_industry_nav">Production Methods</div>
       <div v-else @click="nav_page = 'production'">Production Methods</div>
     </div>
-    <InProductionTab />
+    <InProductionTab v-if="nav_page == 'production'" />
   </div>
 </template>
 
