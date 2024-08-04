@@ -1,5 +1,5 @@
 <script setup>
-
+import InProductionTab from "./subtabs/InProductionTab.vue";
 </script>
 
 <script>
@@ -8,7 +8,7 @@ export default defineComponent({
   name: 'IndustryTab',
   data() {
     return {
-      nav_page: "home",
+      nav_page: "production",
 
     };
   },
@@ -24,8 +24,14 @@ export default defineComponent({
 <template>
   <div class="industry_container">
     <div class="industry_nav">
-      <div>Overview</div>
+      <div v-if="nav_page == 'home'" class="selected_industry_nav">Overview</div>
+      <div v-else @click="nav_page = 'home'">Overview</div>
+      <div v-if="nav_page == 'best10'" class="selected_industry_nav">Best 10 Companies</div>
+      <div v-else @click="nav_page = 'best10'">Best 10 Companies</div>
+      <div v-if="nav_page == 'production'" class="selected_industry_nav">Production Methods</div>
+      <div v-else @click="nav_page = 'production'">Production Methods</div>
     </div>
+    <InProductionTab />
   </div>
 </template>
 
@@ -40,7 +46,7 @@ export default defineComponent({
   display: flex;
   gap: 1rem;
   font-weight: bold;
-  padding: 0 2rem;
+  padding: 0 1.4rem;
 }
 .industry_nav > * {
   cursor: pointer;
