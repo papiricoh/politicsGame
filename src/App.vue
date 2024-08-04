@@ -1,5 +1,5 @@
 <script setup>
-
+import PopulationTab from "./components/tab/PopulationTab.vue";
 </script>
 
 <script>
@@ -8,7 +8,8 @@ export default defineComponent({
   name: 'App',
   data() {
     return {
-      tab: "home",
+      tab: "population",
+
 
     };
   },
@@ -32,8 +33,12 @@ export default defineComponent({
   <nav>
     <div v-if="tab == 'home'" class="tab_button tab_active"><font-awesome-icon :icon="['fas', 'house']" />HOME</div>
     <div v-else @click="tab = 'home'" class="tab_button"><font-awesome-icon :icon="['fas', 'house']" />HOME</div>
+    <div v-if="tab == 'executive'" class="tab_button tab_active"><font-awesome-icon :icon="['fas', 'book-bookmark']" />EXECUTIVE</div>
+    <div v-else @click="tab = 'executive'" class="tab_button"><font-awesome-icon :icon="['fas', 'book-bookmark']" />EXECUTIVE</div>
     <div v-if="tab == 'parliament'" class="tab_button tab_active"><font-awesome-icon :icon="['fas', 'building-columns']" />PARLIAMENT</div>
     <div v-else @click="tab = 'parliament'" class="tab_button"><font-awesome-icon :icon="['fas', 'building-columns']" />PARLIAMENT</div>
+    <div v-if="tab == 'court'" class="tab_button tab_active"><font-awesome-icon :icon="['fas', 'scale-balanced']" />COURT</div>
+    <div v-else @click="tab = 'court'" class="tab_button"><font-awesome-icon :icon="['fas', 'scale-balanced']" />COURT</div>
     <div v-if="tab == 'polls'" class="tab_button tab_active"><font-awesome-icon :icon="['fas', 'chart-pie']" />POLLS</div>
     <div v-else @click="tab = 'polls'" class="tab_button"><font-awesome-icon :icon="['fas', 'chart-pie']" />POLLS</div>
     <div v-if="tab == 'economy'" class="tab_button tab_active"><font-awesome-icon :icon="['fas', 'money-bills']" />ECONOMY</div>
@@ -45,16 +50,16 @@ export default defineComponent({
   </nav>
   <main>
     <div class="top_menu">
-      <div class="next_button">Next Day</div>
+      <div class="next_button">Next Day <font-awesome-icon :icon="['fas', 'forward']" /></div>
     </div>
 
     <div class="content_container">
-
+      <PopulationTab v-if="tab == 'population'" />
     </div>
   </main>
 </template>
 
-<style>
+<style scoped>
 nav {
   width: 14vw;
   height: 100vh;
@@ -62,9 +67,9 @@ nav {
 main {
   width: 86vw;
   height: 100vh;
-  box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
 }
 .tab_button {
   height: 4rem;
@@ -91,16 +96,18 @@ main {
 }
 .content_container {
   width: 86vw;
-  padding: .5rem;
+  padding: .8rem;
+  min-height: 10rem;
   box-sizing: border-box;
 }
 .top_menu {
   display: flex;
   width: 86vw;
-  height: calc(4rem - 1px);
+  height: calc(4rem);
   align-items: center;
   justify-content: flex-end;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.30);
+  box-shadow: 4px 2px 4px rgba(255, 255, 255, 0.30);
+  
 }
 .next_button {
   display: flex;
@@ -115,6 +122,7 @@ main {
   border-radius: .6rem;
   cursor: pointer;
   transition: .4s;
+  gap: .8rem;
 }
 .next_button:hover {
   transition: .4s;
