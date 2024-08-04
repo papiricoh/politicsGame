@@ -1,5 +1,5 @@
 <script setup>
-
+import GdpChart from "../charts/GdpChart.vue";
 </script>
 
 <script>
@@ -46,11 +46,11 @@ export default defineComponent({
       </div>
     </div>
     <div class="eco_graph">
-      <div> <!-- GDP chart -->
-
+      <div class="eco_chart"> <!-- GDP chart -->
+        <GdpChart :newData="[[1,2], [2, 3]]"/>
       </div>
       <div>
-        
+
       </div>
     </div>
   </div>
@@ -89,5 +89,8 @@ export default defineComponent({
 .eco_graph {
   display: grid;
   grid-template-columns: 1fr 1fr;
+}
+.eco_chart {
+  width: 100%;
 }
 </style>
