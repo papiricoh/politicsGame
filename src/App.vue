@@ -1,5 +1,6 @@
 <script setup>
 import PopulationTab from "./components/tab/PopulationTab.vue";
+import EconomyTab from "./components/tab/EconomyTab.vue";
 </script>
 
 <script>
@@ -8,7 +9,7 @@ export default defineComponent({
   name: 'App',
   data() {
     return {
-      tab: "population",
+      tab: "economy",
 
 
     };
@@ -45,6 +46,8 @@ export default defineComponent({
     <div v-else @click="tab = 'economy'" class="tab_button"><font-awesome-icon :icon="['fas', 'money-bills']" />ECONOMY</div>
     <div v-if="tab == 'population'" class="tab_button tab_active"><font-awesome-icon :icon="['fas', 'users-viewfinder']" />POPULATION</div>
     <div v-else @click="tab = 'population'" class="tab_button"><font-awesome-icon :icon="['fas', 'users-viewfinder']" />POPULATION</div>
+    <div v-if="tab == 'territory'" class="tab_button tab_active"><font-awesome-icon :icon="['fas', 'globe']" />TERRITORY</div>
+    <div v-else @click="tab = 'territory'" class="tab_button"><font-awesome-icon :icon="['fas', 'globe']" />TERRITORY</div>
     <div v-if="tab == 'military'" class="tab_button tab_active"><font-awesome-icon :icon="['fas', 'person-military-rifle']" />MILITARY</div>
     <div v-else @click="tab = 'military'" class="tab_button"><font-awesome-icon :icon="['fas', 'person-military-rifle']" />MILITARY</div>
   </nav>
@@ -54,6 +57,7 @@ export default defineComponent({
     </div>
 
     <div class="content_container">
+      <EconomyTab v-if="tab == 'economy'" />
       <PopulationTab v-if="tab == 'population'" />
     </div>
   </main>
