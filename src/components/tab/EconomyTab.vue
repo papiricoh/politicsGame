@@ -47,9 +47,10 @@ export default defineComponent({
     </div>
     <div class="eco_graph">
       <div class="eco_chart"> <!-- GDP chart -->
-        <GdpChart :newData="[[1,2], [2, 3]]"/>
+        <GdpChart :newData="[[1839208320,482124910020], [1939208320, 432342142142], [2039208320, 332134142142], [2339208320, 532132142142], [2539208320, 512132142142], [2839208320, 532132142142]]"/>
+        <div>-1%</div>
       </div>
-      <div>
+      <div class="eco_chart">
 
       </div>
     </div>

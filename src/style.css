@@ -89,3 +89,14 @@ code {
   }
 }
 
+rect {
+  fill: transparent;
+  color: white;
+}
+text {
+  color: white !important;
+  fill: white !important;
+}
+.highcharts-credits {
+  display: none;
+}

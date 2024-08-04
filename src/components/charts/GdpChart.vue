@@ -21,7 +21,12 @@ export default defineComponent({
                     text: 'GDP Chart'
                 },
                 xAxis: {
-                    categories: []
+                    type: 'datetime',
+                    dateTimeLabelFormats: {
+                        // don't display the year
+                        month: '%e. %b',
+                        year: '%b'
+                    },
                 },
                 yAxis: {
                     title: {
@@ -66,17 +71,7 @@ export default defineComponent({
 </template>
 
 <style>
-rect {
-    fill: transparent;
-    color: white;
-}
-text {
-    color: white !important;
-    fill: white !important;
-}
-.highcharts-credits {
-    display: none;
-}
+
 
 </style>
 

@@ -1,6 +1,7 @@
 <script setup>
 import PopulationTab from "./components/tab/PopulationTab.vue";
 import EconomyTab from "./components/tab/EconomyTab.vue";
+import IndustryTab from "./components/tab/IndustryTab.vue";
 </script>
 
 <script>
@@ -9,7 +10,7 @@ export default defineComponent({
   name: 'App',
   data() {
     return {
-      tab: "economy",
+      tab: "industry",
 
 
     };
@@ -57,14 +58,19 @@ export default defineComponent({
     <div v-if="tab == 'currency'" class="tab_button tab_active"><font-awesome-icon :icon="['fas', 'dollar-sign']" />CURRENCY</div>
     <div v-else @click="tab = 'currency'" class="tab_button"><font-awesome-icon :icon="['fas', 'dollar-sign']" />CURRENCY</div>
   </nav>
+
   <main>
     <div class="top_menu">
+      <div class="calendar_cont">
+        <div>{{ new Date(1580204223201).toDateString() }}</div>
+      </div>
       <div class="next_button">Next Day <font-awesome-icon :icon="['fas', 'forward']" /></div>
     </div>
 
     <div class="content_container">
       <EconomyTab v-if="tab == 'economy'" />
       <PopulationTab v-if="tab == 'population'" />
+      <IndustryTab v-if="tab == 'industry'" />
     </div>
   </main>
 </template>
@@ -117,7 +123,7 @@ main {
   align-items: center;
   justify-content: flex-end;
   box-shadow: 4px 2px 4px rgba(255, 255, 255, 0.30);
-  
+  gap: 1rem;
 }
 .next_button {
   display: flex;
@@ -138,5 +144,21 @@ main {
   transition: .4s;
   
   background-position:-10rem;  
+}
+.calendar_cont {
+  display: flex;
+  outline: 2px ridge rgb(140, 0, 0);
+  height: 3rem;
+  padding: 0 1rem;
+  align-items: center;
+  font-weight: 600;
+  box-shadow: -4px 0 12px rgb(140, 0, 0);
+  cursor: pointer;
+  transition: .4s;
+}
+.calendar_cont:hover {
+  
+  background-color: rgb(140, 0, 0);
+  
 }
 </style>
