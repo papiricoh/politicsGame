@@ -79,9 +79,10 @@ export default defineComponent({
 nav {
   width: 14vw;
   height: 100vh;
+  position: fixed;
 }
 main {
-  width: 86vw;
+  width: 85vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -111,19 +112,25 @@ main {
   background-color: rgba(255, 255, 255, 0.1);
 }
 .content_container {
-  width: 86vw;
+  width: 85vw;
   padding: .8rem;
   min-height: 10rem;
   box-sizing: border-box;
+  margin-top: 4rem;
+  margin-left: 14vw;
 }
 .top_menu {
   display: flex;
-  width: 86vw;
+  width: 85vw;
   height: calc(4rem);
   align-items: center;
   justify-content: flex-end;
-  box-shadow: 4px 2px 4px rgba(255, 255, 255, 0.30);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.30);
   gap: 1rem;
+  position: fixed;
+  background-color: #242424;
+  margin-left: 14vw;
+  z-index: 20;
 }
 .next_button {
   display: flex;

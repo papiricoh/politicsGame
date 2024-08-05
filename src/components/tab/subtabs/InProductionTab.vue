@@ -1,5 +1,5 @@
 <script setup>
-
+import MethodBox from "./MethodBox.vue";
 </script>
 
 <script>
@@ -24,17 +24,96 @@ export default defineComponent({
 <template>
   <div class="industry_container">
     <div class="in_prod_container_box">
-      <div></div>
-      <div></div>
+      <img src="/industry/metallurgy.png"/>
+      <div class="in_title">
+        <div>Metallurgic Factories</div>
+      </div>
       <div class="me_cont">
-        <div class="methods_box">
-          <div class="method_sel"></div>
-          <div class="method_sel"></div>
-          <div class="method_sel"></div>
-          <div class="method_sel"></div>
-        </div>
+        <MethodBox />
       </div>
     </div>
+
+    <div class="in_prod_container_box">
+      <img src="/industry/farm.png"/>
+      <div class="in_title">
+        <div>Farm Industries</div>
+      </div>
+      <div class="me_cont">
+        <MethodBox />
+      </div>
+    </div>
+
+    <div class="in_prod_container_box">
+      <img src="/industry/assemblers.png"/>
+      <div class="in_title">
+        <div>Assembler Factories</div>
+      </div>
+      <div class="me_cont">
+        <MethodBox />
+      </div>
+    </div>
+
+    <div class="in_prod_container_box">
+      <img src="/industry/mine.png"/>
+      <div class="in_title">
+        <div>Mining Industries</div>
+      </div>
+      <div class="me_cont">
+        <MethodBox />
+      </div>
+    </div>
+
+    <div class="in_prod_container_box">
+      <img src="/industry/energy.png"/>
+      <div class="in_title">
+        <div>Energy Industries</div>
+      </div>
+      <div class="me_cont">
+        <MethodBox />
+      </div>
+    </div>
+
+    <div class="in_prod_container_box">
+      <img src="/industry/supermarket.png"/>
+      <div class="in_title">
+        <div>Market Industries</div>
+      </div>
+      <div class="me_cont">
+        <MethodBox />
+      </div>
+    </div>
+
+    <div class="in_prod_container_box">
+      <img src="/industry/tech.png"/>
+      <div class="in_title">
+        <div>Tech Industries</div>
+      </div>
+      <div class="me_cont">
+        <MethodBox />
+      </div>
+    </div>
+
+    <div class="in_prod_container_box">
+      <img src="/industry/hospital.png"/>
+      <div class="in_title">
+        <div>Health Industries</div>
+      </div>
+      <div class="me_cont">
+        <MethodBox />
+      </div>
+    </div>
+
+    <div class="in_prod_container_box">
+      <img src="/industry/banks.png"/>
+      <div class="in_title">
+        <div>Banks</div>
+      </div>
+      <div class="me_cont">
+        <MethodBox />
+      </div>
+    </div>
+
+
     
   </div>
 </template>
@@ -46,6 +125,7 @@ export default defineComponent({
   box-sizing: border-box;
   padding: 1rem;
   padding-top: 2rem;
+  gap: 1rem;
 }
 .in_prod_container_box {
   display: grid;
@@ -53,7 +133,7 @@ export default defineComponent({
   min-height: 4rem;
   border-radius: .6rem;
   padding: 1rem;
-  grid-template-columns: 1fr 3fr 3fr 3fr;
+  grid-template-columns: 1fr 3fr 3fr 5fr;
 }
 .me_cont {
   display: flex;
@@ -71,6 +151,7 @@ export default defineComponent({
   border-right: 1px solid rgba(255, 255, 255, 0.5);
   transition: .4s;
   cursor: pointer;
+  padding: .3rem;
 }
 .methods_box>*:first-child {
   border-top-left-radius: .4rem;
@@ -84,5 +165,18 @@ export default defineComponent({
 }
 .methods_box>*:hover {
   background-color: rgba(255, 255, 255, 0.2);
+}
+img {
+  height: 6rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 8px black;
+}
+.in_title {
+  text-align: start;
+  padding: 0 .6rem;
+  display: flex;
+  align-items: center;
+  font-size: 1.4rem;
+  font-weight: bold;
 }
 </style>

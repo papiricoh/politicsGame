@@ -39,7 +39,6 @@ export default defineComponent({
 .industry_container {
   display: flex;
   flex-direction: column;
-
 }
 
 .industry_nav {
