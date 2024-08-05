@@ -31,6 +31,22 @@ export default defineComponent({
       <div class="me_cont">
         <MethodBox />
       </div>
+      <div class="me_data_cont">
+        <div class="me_data">
+          <div>Efficiency</div>
+          <div>20%</div>
+        </div>
+        <div class="separator"></div>
+        <div class="me_data">
+          <div>PIB Value</div>
+          <div>$293.239.219</div>
+        </div>
+        <div class="separator"></div>
+        <div class="me_data">
+          <div>Workers</div>
+          <div>80%</div>
+        </div>
+      </div>
     </div>
 
     <div class="in_prod_container_box">
@@ -178,5 +194,27 @@ img {
   align-items: center;
   font-size: 1.4rem;
   font-weight: bold;
+}
+.me_data_cont {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .8rem;
+}
+.separator {
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: .3rem;
+  min-height: 4rem;
+}
+.me_data {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 1.4rem;
+}
+.me_data>div:first-child {
+  font-size: 1.2rem;
 }
 </style>
