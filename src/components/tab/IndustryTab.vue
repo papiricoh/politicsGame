@@ -8,7 +8,7 @@ export default defineComponent({
   name: 'IndustryTab',
   data() {
     return {
-      nav_page: "production",
+      nav_page: "best10",
 
     };
   },
@@ -26,8 +26,8 @@ export default defineComponent({
     <div class="industry_nav">
       <div v-if="nav_page == 'home'" class="selected_industry_nav">Overview</div>
       <div v-else @click="nav_page = 'home'">Overview</div>
-      <div v-if="nav_page == 'best10'" class="selected_industry_nav">Best 10 Companies</div>
-      <div v-else @click="nav_page = 'best10'">Best 10 Companies</div>
+      <div v-if="nav_page == 'best10'" class="selected_industry_nav">Best Companies</div>
+      <div v-else @click="nav_page = 'best10'">Best Companies</div>
       <div v-if="nav_page == 'production'" class="selected_industry_nav">Production Methods</div>
       <div v-else @click="nav_page = 'production'">Production Methods</div>
     </div>

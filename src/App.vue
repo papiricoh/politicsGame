@@ -47,10 +47,10 @@ export default defineComponent({
     <div v-else @click="tab = 'economy'" class="tab_button"><font-awesome-icon :icon="['fas', 'money-bills']" />ECONOMY</div>
     <div v-if="tab == 'population'" class="tab_button tab_active"><font-awesome-icon :icon="['fas', 'users-viewfinder']" />POPULATION</div>
     <div v-else @click="tab = 'population'" class="tab_button"><font-awesome-icon :icon="['fas', 'users-viewfinder']" />POPULATION</div>
-    <div v-if="tab == 'territory'" class="tab_button tab_active"><font-awesome-icon :icon="['fas', 'map-location-dot']" />TERRITORY</div>
-    <div v-else @click="tab = 'territory'" class="tab_button"><font-awesome-icon :icon="['fas', 'map-location-dot']" />TERRITORY</div>
     <div v-if="tab == 'industry'" class="tab_button tab_active"><font-awesome-icon :icon="['fas', 'industry']" />INDUSTRY</div>
     <div v-else @click="tab = 'industry'" class="tab_button"><font-awesome-icon :icon="['fas', 'industry']" />INDUSTRY</div>
+    <div v-if="tab == 'territory'" class="tab_button tab_active"><font-awesome-icon :icon="['fas', 'map-location-dot']" />TERRITORY</div>
+    <div v-else @click="tab = 'territory'" class="tab_button"><font-awesome-icon :icon="['fas', 'map-location-dot']" />TERRITORY</div>
     <div v-if="tab == 'diplomacy'" class="tab_button tab_active"><font-awesome-icon :icon="['fas', 'globe']" />DIPLOMACY</div>
     <div v-else @click="tab = 'diplomacy'" class="tab_button"><font-awesome-icon :icon="['fas', 'globe']" />DIPLOMACY</div>
     <div v-if="tab == 'military'" class="tab_button tab_active"><font-awesome-icon :icon="['fas', 'person-military-rifle']" />MILITARY</div>
